@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Task</title>
+  <link rel="icon" href="./assets/fom.png" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div><strong>To-Do App</strong></div>
+    <div>
+      <a href="index.html">Task</a>
+      <a href="edit.html">Edit</a>
+    </div>
+  </nav>
+
+  <h1>Add Task</h1>
+
+  <div class="form-section">
+    <input id="taskInput" type="text" placeholder="Enter your tasks here" />
+    <button onclick="addTask()">Add Task</button>
+  </div>
+
+  <script>
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let val = input.value.trim();
+
+      if (val === "") {
+        alert("Please enter a task before adding.");
+        return;
+      }
+
+      // Get tasks from localStorage
+      let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+      
+      // Add new task
+      tasks.push(val);
+
+      // Save back to localStorage
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+
+      // Confirmation
+      alert("Task added successfully!");
+
+      // Clear input
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
